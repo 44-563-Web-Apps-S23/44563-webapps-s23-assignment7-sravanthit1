@@ -39,7 +39,7 @@
     <button onclick="makeNewDiv()" class="btn btn-primary">Add Value</button>
     <button onclick="get()" class="btn btn-info">Get</button>
     <button onclick="delay()" class="btn btn-light">Delay</button>
-    
+    <button onclick="promote()" class="btn btn-secondary">Promote</button>
 
 
 </body>
@@ -75,6 +75,22 @@ function delay(){
         document.getElementById('target').insertBefore(removedItem,queueItems[length])
     }
 }
+function promote(){
+        var queueItems = document.getElementsByClassName("delayQ")
+        var length = queueItems.length
+        var random = Math.floor(Math.random()*(length))
+        console.log(random)
+
+        let element = document.createElement("div")
+		element.innerHTML = queueItems[random].textContent
+		element.style.color = "orange"
+        element.className = "delayQ"
+
+		
+		let container = document.getElementById('target')
+         queueItems[random].remove()
+        container.insertBefore(element,queueItems[0])
+    }
 
 </script>
 </html>	
