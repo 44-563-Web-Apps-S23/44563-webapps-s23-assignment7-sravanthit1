@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html> <head>
+    <title>delayQ Page!</title>
+    <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+    <h1>Sravanthi Thukivakam builds a delaying queue</h1>
+    <div class="flex-container" id="target">
+      <div class="delayQ">row item 1</div>   
+      <div class="delayQ">row item 2</div>  
+      <div class="delayQ">row item 3</div>  
+    </div>
+
+<p> Press the button to create an new element of type div and then add it to the container.
+    </p>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputElement">
+    </div><br>
+    <button onclick="makeNewDiv()" class="btn btn-primary">Add Value</button>
+    <button onclick="get()" class="btn btn-info">Get</button>
+    <button onclick="delay()" class="btn btn-light">Delay</button>
+    
+
+
+</body>
+<script>
+function makeNewDiv(){
+    
+    let element = document.createElement("div")
+    element.innerHTML = document.getElementById("inputElement").value
+    element.style.color = "orange"
+    element.className = "delayQ"
+
+    
+    let container = document.getElementById('target')
+    container.appendChild(element)
+    
+}
+function get(){
+    var queueItems = []
+    queueItems = document.getElementsByClassName("delayQ")
+    length = queueItems.length
+
+    if(length>0){
+        queueItems[0].remove()
+    }
+}
+function delay(){
+    var queueItems = []
+    queueItems = document.getElementsByClassName("delayQ")
+    length = queueItems.length
+
+    if(length>1){
+        var removedItem = queueItems[0]
+        document.getElementById('target').insertBefore(removedItem,queueItems[length])
+    }
+}
+
+</script>
+</html>	
